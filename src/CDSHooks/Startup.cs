@@ -1,5 +1,9 @@
+using CDSHooks.Core;
+using CDSHooks.Data.DBContexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +23,12 @@ namespace CDSHooks
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            void MigrationAssembly(SqlServerDbContextOptionsBuilder x) => x.MigrationsAssembly("CDSHooks.Migrations");
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString, MigrationAssembly));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +48,8 @@ namespace CDSHooks
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.InitializeCDSHooksServerDatabase(env);
 
             app.UseAuthorization();
 
