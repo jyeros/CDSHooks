@@ -1,4 +1,4 @@
-﻿namespace CDSHooks.Data.Models
+﻿namespace CDSHooks.Domain
 {
     public enum ContextOptionality
     {

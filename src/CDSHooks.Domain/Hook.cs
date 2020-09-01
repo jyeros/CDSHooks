@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CDSHooks.Data.Models
+namespace CDSHooks.Domain
 {
     public class Hook
     {

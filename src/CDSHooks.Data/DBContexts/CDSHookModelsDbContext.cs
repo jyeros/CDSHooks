@@ -1,5 +1,5 @@
-﻿using CDSHooks.Data.Models;
-using CDSHooks.Data.ModelsConfiguration;
+﻿using CDSHooks.Data.ModelsConfiguration;
+using CDSHooks.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace CDSHooks.Data.DBContexts

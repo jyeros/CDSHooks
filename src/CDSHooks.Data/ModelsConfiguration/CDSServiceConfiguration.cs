@@ -1,4 +1,4 @@
-﻿using CDSHooks.Data.Models;
+﻿using CDSHooks.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Collections.Generic;

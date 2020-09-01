@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CDSHooks.Data.Models
+namespace CDSHooks.Domain
 {
     public class HookContext
     {

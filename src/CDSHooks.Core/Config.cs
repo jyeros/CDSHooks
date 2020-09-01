@@ -1,4 +1,4 @@
-﻿using CDSHooks.Data.Models;
+﻿using CDSHooks.Domain;
 using System.Collections.Generic;
 
 namespace CDSHooks.Core

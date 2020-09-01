@@ -1,4 +1,4 @@
-﻿using CDSHooks.Data.Models;
+﻿using CDSHooks.Domain;
 
 namespace CDSHooks.Areas.Api.Models
 {
