@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json;
 
 namespace CDSHooks
 {
@@ -22,7 +23,11 @@ namespace CDSHooks
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddJsonOptions(options => 
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+            });
 
             void MigrationAssembly(SqlServerDbContextOptionsBuilder x) => x.MigrationsAssembly("CDSHooks.Migrations");
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
