@@ -25,6 +25,14 @@ namespace CDSHooks.Core
                         }
                         context.SaveChanges();
                     }
+                    if (!context.Services.Any())
+                    {
+                        foreach (var service in Config.GetServices())
+                        {
+                            context.Services.Add(service);
+                        }
+                        context.SaveChanges();
+                    }
                 }
             }
         }

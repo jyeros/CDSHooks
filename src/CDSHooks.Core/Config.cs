@@ -315,5 +315,21 @@ namespace CDSHooks.Core
                     }
             };
         }
+
+        public static List<CDSService> GetServices()
+        {
+            return new List<CDSService>
+            {
+                new CDSService
+                {
+                    Id = "patient-greeting",
+                    Title = "Patient greeting",
+                    HookId = "patient-view",
+                    CodeType = CDSServiceCodeType.JSON,
+                    Code = "{\"cards\":[{\"uuid\":\"12345678-1234-1234-1234-123456789012\",\"summary\":\"NowSeeing\",\"source\":{\"label\":\"PatientGreetingService\"},\"indicator\":\"info\"}]}",
+                    Description = "Display generic patient grettings"
+                }
+            };
+        }
     }
 }
