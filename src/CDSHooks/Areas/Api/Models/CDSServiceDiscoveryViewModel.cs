@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 
 namespace CDSHooks.Areas.Api.Models
 {
+    [JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
     public class CDSServiceDiscoveryViewModel
     {
         public string Hook { get; set; }

@@ -1,4 +1,5 @@
 using CDSHooks.Core;
+using CDSHooks.Core.Fhir;
 using CDSHooks.Data.DBContexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,7 +8,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Text.Json;
 
 namespace CDSHooks
 {
@@ -23,10 +23,10 @@ namespace CDSHooks
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddJsonOptions(options => 
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
             {
-                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-                options.JsonSerializerOptions.IgnoreNullValues = true;
+                options.SerializerSettings.Converters.Add(new FhirSerializerNewtonsoft());
+                options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
 
             void MigrationAssembly(SqlServerDbContextOptionsBuilder x) => x.MigrationsAssembly("CDSHooks.Migrations");
