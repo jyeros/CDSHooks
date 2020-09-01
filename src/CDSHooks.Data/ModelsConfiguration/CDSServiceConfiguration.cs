@@ -1,8 +1,8 @@
 ﻿using CDSHooks.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text.Json;
 
 namespace CDSHooks.Data.ModelsConfiguration
 {
@@ -12,8 +12,8 @@ namespace CDSHooks.Data.ModelsConfiguration
         {
             // This Converter will perform the conversion to and from Json to the desired type
             builder.Property(e => e.Prefetch).HasConversion(
-                v => JsonSerializer.Serialize(v, new JsonSerializerOptions { IgnoreNullValues = true }),
-                v => JsonSerializer.Deserialize<IDictionary<string, string>>(v, new JsonSerializerOptions { IgnoreNullValues = true }));
+                v => JsonConvert.SerializeObject(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
+                v => JsonConvert.DeserializeObject<IDictionary<string, string>>(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
         }
     }
 }
