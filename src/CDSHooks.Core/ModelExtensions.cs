@@ -1,8 +1,9 @@
-﻿using CDSHooks.Domain;
+﻿using CDSHooks.Core.Models;
+using CDSHooks.Domain;
 
-namespace CDSHooks.Areas.Api.Models
+namespace CDSHooks.Core
 {
-    public static class CDSServiceExtensions
+    public static class ModelExtensions
     {
         public static CDSServiceDiscoveryViewModel ToDiscoveryViewModel(this CDSService service)
         {

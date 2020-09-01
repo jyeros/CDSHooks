@@ -1,4 +1,5 @@
-﻿using CDSHooks.Areas.Api.Models;
+﻿using CDSHooks.Core;
+using CDSHooks.Core.Models;
 using CDSHooks.Data.DBContexts;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
