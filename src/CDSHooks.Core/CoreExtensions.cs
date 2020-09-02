@@ -1,4 +1,5 @@
-﻿using CDSHooks.Data.DBContexts;
+﻿using CDSHooks.Core.Fhir;
+using CDSHooks.Data.DBContexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,6 +42,7 @@ namespace CDSHooks.Core
         {
             services.AddScoped<IHookContextParser, HookContextParser>();
             services.AddScoped<IDispatchExecuteService, DispatchExecuteService>();
+            services.AddScoped<IFhirClientFactory, FhirClientFactory>();
 
             return services;
         }
