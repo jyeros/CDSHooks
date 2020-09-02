@@ -1,4 +1,5 @@
 ﻿using CDSHooks.Core.Fhir;
+using CDSHooks.Core.PrefetchTemplate;
 using CDSHooks.Data.DBContexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,7 @@ namespace CDSHooks.Core
         {
             services.AddScoped<IHookContextParser, HookContextParser>();
             services.AddScoped<IDispatchExecuteService, DispatchExecuteService>();
+            services.AddScoped<ITemplateLanguage, RegexTemplateLanguage>();
             services.AddScoped<IFhirClientFactory, FhirClientFactory>();
 
             return services;
