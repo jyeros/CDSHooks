@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CDSHooks.Domain
 {
@@ -13,7 +14,7 @@ namespace CDSHooks.Domain
         public bool IsPrefetchToken { get; set; }
         [Required]
         // TODO: restrict type
-        public string Type { get; set; }
+        public Type Type { get; set; }
         public string Description { get; set; }
     }
 }

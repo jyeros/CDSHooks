@@ -1,4 +1,5 @@
 ﻿using CDSHooks.Domain;
+using Hl7.Fhir.Model;
 using System.Collections.Generic;
 
 namespace CDSHooks.Core
@@ -20,7 +21,7 @@ namespace CDSHooks.Core
                                 Field = "userId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The id of the current user.\nFor example, if the user represents a FHIR resource on the given FHIR server, the resource type would be one of Practitioner, PractitionerRole, Patient, or RelatedPerson.\nPatient or RelatedPerson are appropriate when a patient or their proxy are viewing the record."
                             },
                             new HookContext
@@ -28,7 +29,7 @@ namespace CDSHooks.Core
                                 Field = "patientId",
                                 Optionality = ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Patient.id of the current patient in context"
                             },
                             new HookContext
@@ -36,7 +37,7 @@ namespace CDSHooks.Core
                                 Field = "encounterId",
                                 Optionality = ContextOptionality.OPTIONAL,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Encounter.id of the current encounter in context"
                             }
                         }
@@ -52,7 +53,7 @@ namespace CDSHooks.Core
                                 Field = "userId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The id of the current user. For this hook, the user is expected to be of type Practitioner. For example, Practitioner/123"
                             },
                             new HookContext
@@ -60,7 +61,7 @@ namespace CDSHooks.Core
                                 Field = "patientId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Patient.id of the current patient in context"
                             },
                             new HookContext
@@ -68,7 +69,7 @@ namespace CDSHooks.Core
                                 Field = "encounterId",
                                 Optionality =  ContextOptionality.OPTIONAL,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Encounter.id of the current encounter in context"
                             },
                             new HookContext
@@ -76,7 +77,7 @@ namespace CDSHooks.Core
                                 Field = "medications",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = false,
-                                Type = "Bundle",
+                                Type = typeof(Bundle),
                                 Description = "DSTU2 - FHIR Bundle of draft MedicationOrder resources. STU3 - FHIR Bundle of draft MedicationRequest resources"
                             }
                         }
@@ -92,7 +93,7 @@ namespace CDSHooks.Core
                                 Field = "userId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The id of the current user. For this hook, the user is expected to be of type Practitioner. For example, Practitioner/123"
                             },
                             new HookContext
@@ -100,7 +101,7 @@ namespace CDSHooks.Core
                                 Field = "patientId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Patient.id of the current patient in context"
                             },
                             new HookContext
@@ -108,7 +109,7 @@ namespace CDSHooks.Core
                                 Field = "encounterId",
                                 Optionality =  ContextOptionality.OPTIONAL,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Encounter.id of the current encounter in context"
                             },
                             new HookContext
@@ -116,7 +117,7 @@ namespace CDSHooks.Core
                                 Field = "orders",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = false,
-                                Type = "Bundle",
+                                Type = typeof(Bundle),
                                 Description = "DSTU2 - FHIR Bundle of MedicationOrder, DiagnosticOrder, DeviceUseRequest, ReferralRequest, ProcedureRequest, NutritionOrder, VisionPrescription with draft status. STU3 - FHIR Bundle of MedicationRequest, ReferralRequest, ProcedureRequest, NutritionOrder, VisionPrescription with draft status"
                             }
                         }
@@ -132,7 +133,7 @@ namespace CDSHooks.Core
                                 Field = "userId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The id of the current user. For this hook, the user is expected to be of type Practitioner or PractitionerRole. For example, PractitionerRole/123 or Practitioner/abc."
                             },
                             new HookContext
@@ -140,7 +141,7 @@ namespace CDSHooks.Core
                                 Field = "patientId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Patient.id of the current patient in context"
                             },
                             new HookContext
@@ -148,7 +149,7 @@ namespace CDSHooks.Core
                                 Field = "encounterId",
                                 Optionality =  ContextOptionality.OPTIONAL,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Encounter.id of the current encounter in context"
                             },
                             new HookContext
@@ -156,7 +157,7 @@ namespace CDSHooks.Core
                                 Field = "selections",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = false,
-                                Type = "Reference[]",
+                                Type = typeof(string), // TODO: is reference <ResourceType>/<id>
                                 Description = "The FHIR id of the newly selected order(s). The selections field references FHIR resources in the draftOrders Bundle. For example, MedicationRequest/103."
                             },
                             new HookContext
@@ -164,7 +165,7 @@ namespace CDSHooks.Core
                                 Field = "draftOrders",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = false,
-                                Type = "Bundle",
+                                Type = typeof(Bundle),
                                 Description = "DSTU2 - FHIR Bundle of MedicationOrder, DiagnosticOrder, DeviceUseRequest, ReferralRequest, ProcedureRequest, NutritionOrder, VisionPrescription with draft status. STU3 - FHIR Bundle of MedicationRequest, ReferralRequest, ProcedureRequest, NutritionOrder, VisionPrescription with draft status. R4 - FHIR Bundle of MedicationRequest, NutritionOrder, ServiceRequest, VisionPrescription with draft status"
                             }
                         }
@@ -180,7 +181,7 @@ namespace CDSHooks.Core
                                 Field = "userId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The id of the current user. For this hook, the user is expected to be of type Practitioner or PractitionerRole. For example, PractitionerRole/123 or Practitioner/abc."
                             },
                             new HookContext
@@ -188,7 +189,7 @@ namespace CDSHooks.Core
                                 Field = "patientId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Patient.id of the current patient in context"
                             },
                             new HookContext
@@ -196,7 +197,7 @@ namespace CDSHooks.Core
                                 Field = "encounterId",
                                 Optionality =  ContextOptionality.OPTIONAL,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Encounter.id of the current encounter in context"
                             },
                             new HookContext
@@ -204,7 +205,7 @@ namespace CDSHooks.Core
                                 Field = "selections",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = false,
-                                Type = "Bundle",
+                                Type = typeof(Bundle),
                                 Description = "DSTU2 - FHIR Bundle of MedicationOrder, DiagnosticOrder, DeviceUseRequest, ReferralRequest, ProcedureRequest, NutritionOrder, VisionPrescription with draft status. STU3 - FHIR Bundle of MedicationRequest, ReferralRequest, ProcedureRequest, NutritionOrder, VisionPrescription with draft status. R4 - FHIR Bundle of MedicationRequest, NutritionOrder, ServiceRequest, VisionPrescription with draft status"
                             }
                         }
@@ -220,7 +221,7 @@ namespace CDSHooks.Core
                                 Field = "userId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The id of the current user. For this hook, the user could be of type Practitioner, PractitionerRole, Patient, or RelatedPerson. For example, PractitionerRole/123. Patient or RelatedPerson are appropriate when a patient or their proxy are booking the appointment."
                             },
                             new HookContext
@@ -228,7 +229,7 @@ namespace CDSHooks.Core
                                 Field = "patientId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Patient.id of Patient appointment(s) is/are for"
                             },
                             new HookContext
@@ -236,7 +237,7 @@ namespace CDSHooks.Core
                                 Field = "encounterId",
                                 Optionality =  ContextOptionality.OPTIONAL,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Encounter.id of Encounter where booking was initiated"
                             },
                             new HookContext
@@ -244,7 +245,7 @@ namespace CDSHooks.Core
                                 Field = "appointments",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = false,
-                                Type = "Bundle",
+                                Type = typeof(Bundle),
                                 Description = "DSTU2/STU3/R4 - FHIR Bundle of Appointments in 'proposed' state"
                             }
                         }
@@ -260,7 +261,7 @@ namespace CDSHooks.Core
                                 Field = "userId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The id of the current user. For this hook, the user is expected to be of type Practitioner or PractitionerRole. For example, PractitionerRole/123"
                             },
                             new HookContext
@@ -268,7 +269,7 @@ namespace CDSHooks.Core
                                 Field = "patientId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Patient.id of the Patient the Encounter is for"
                             },
                             new HookContext
@@ -276,7 +277,7 @@ namespace CDSHooks.Core
                                 Field = "encounterId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Encounter.id of the Encounter being started"
                             }
                         }
@@ -292,7 +293,7 @@ namespace CDSHooks.Core
                                 Field = "userId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The id of the current user. For this hook, the user is expected to be of type Practitioner or PractitionerRole. For example, Practitioner/123"
                             },
                             new HookContext
@@ -300,7 +301,7 @@ namespace CDSHooks.Core
                                 Field = "patientId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Patient.id of the being discharged"
                             },
                             new HookContext
@@ -308,7 +309,7 @@ namespace CDSHooks.Core
                                 Field = "encounterId",
                                 Optionality =  ContextOptionality.REQUIRED,
                                 IsPrefetchToken = true,
-                                Type = "string",
+                                Type = typeof(string),
                                 Description = "The FHIR Encounter.id of the Encounter being ended"
                             }
                         }
