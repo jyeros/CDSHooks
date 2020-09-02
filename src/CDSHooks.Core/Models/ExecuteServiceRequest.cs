@@ -14,7 +14,7 @@ namespace CDSHooks.Core.Models
         [Required]
         public string HookInstance { get; set; }
         public string FhirServer { get; set; }
-        public object FhirAuthorization { get; set; }
+        public ExecuteServiceRequestFhirAuthorization FhirAuthorization { get; set; }
         [Required]
         public IDictionary<string, object> Context { get; set; }
         public IDictionary<string, Resource> Prefetch { get; set; }
