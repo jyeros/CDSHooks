@@ -43,6 +43,7 @@ namespace CDSHooks.Core
         {
             services.AddScoped<IHookContextParser, HookContextParser>();
             services.AddScoped<IDispatchExecuteService, DispatchExecuteService>();
+            services.AddScoped<IPrefetchTemplateRender, PrefetchTemplateRender>();
             services.AddScoped<ITemplateLanguage, RegexTemplateLanguage>();
             services.AddScoped<IFhirClientFactory, FhirClientFactory>();
 

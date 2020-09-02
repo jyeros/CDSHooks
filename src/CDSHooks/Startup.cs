@@ -25,6 +25,7 @@ namespace CDSHooks
         {
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
             {
+                // TODO: ignore empty string, array and object
                 options.SerializerSettings.Converters.Add(new FhirSerializerNewtonsoft());
                 options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
