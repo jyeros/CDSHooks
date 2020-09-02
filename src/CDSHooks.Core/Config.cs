@@ -323,12 +323,25 @@ namespace CDSHooks.Core
             {
                 new CDSService
                 {
-                    Id = "patient-greeting",
+                    Id = "patient-greeting-generic",
                     Title = "Patient greeting",
                     HookId = "patient-view",
                     CodeType = CDSServiceCodeType.JSON,
                     Code = "{\"cards\":[{\"uuid\":\"12345678-1234-1234-1234-123456789012\",\"summary\":\"NowSeeing\",\"source\":{\"label\":\"PatientGreetingService\"},\"indicator\":\"info\"}]}",
                     Description = "Display generic patient grettings"
+                },
+                new CDSService
+                {
+                    Id = "patient-greeting",
+                    Title = "Patient greeting",
+                    HookId = "patient-view",
+                    CodeType = CDSServiceCodeType.JSON,
+                    Code = "{\"cards\":[{\"uuid\":\"12345678-1234-1234-1234-123456789012\",\"summary\":\"NowSeeing\",\"source\":{\"label\":\"PatientGreetingService\"},\"indicator\":\"info\"}]}",
+                    Description = "Display generic patient grettings",
+                    Prefetch = new Dictionary<string, string>
+                    {
+                        ["patient"] = "Patient/{{context.patientId}}"
+                    }
                 }
             };
         }
