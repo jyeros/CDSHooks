@@ -13,11 +13,14 @@ namespace CDSHooks.Areas.Api.Controllers
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IDispatchExecuteService dispatchExecuteService;
+        private readonly IHookContextParser hookContextParser;
 
-        public CDSServicesController(ApplicationDbContext dbContext, IDispatchExecuteService dispatchExecuteService)
+        public CDSServicesController(ApplicationDbContext dbContext, IDispatchExecuteService dispatchExecuteService,
+            IHookContextParser hookContextParser)
         {
             this.dbContext = dbContext;
             this.dispatchExecuteService = dispatchExecuteService;
+            this.hookContextParser = hookContextParser;
         }
 
         // GET: cds-services
@@ -29,6 +32,7 @@ namespace CDSHooks.Areas.Api.Controllers
             return new JsonResult(new { services });
         }
 
+        // POST: cds-services/{id}
         [HttpPost("{id}")]
         public IActionResult ExecuteService(string id, [FromBody] ExecuteServiceRequest executeService)
         {
@@ -36,10 +40,13 @@ namespace CDSHooks.Areas.Api.Controllers
             if (service == null)
                 return NotFound();
 
+            var (outcome, context) = hookContextParser.Parse(executeService.Context, service.Hook.Context);
+            if (outcome != null)
+                return BadRequest(outcome);
+
             var result = dispatchExecuteService.Dispatch(executeService, service);
 
             return new JsonResult(result);
         }
-
     }
 }

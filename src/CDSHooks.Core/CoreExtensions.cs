@@ -39,7 +39,10 @@ namespace CDSHooks.Core
 
         public static IServiceCollection AddCoreServices(this IServiceCollection services)
         {
-            return services.AddScoped<IDispatchExecuteService, DispatchExecuteService>();
+            services.AddScoped<IHookContextParser, HookContextParser>();
+            services.AddScoped<IDispatchExecuteService, DispatchExecuteService>();
+
+            return services;
         }
     }
 }

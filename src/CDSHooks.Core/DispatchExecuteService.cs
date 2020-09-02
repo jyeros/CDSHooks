@@ -1,7 +1,6 @@
 ﻿using CDSHooks.Core.Models;
 using CDSHooks.Domain;
 using Newtonsoft.Json;
-using System;
 
 namespace CDSHooks.Core
 {
