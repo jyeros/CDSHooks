@@ -335,8 +335,31 @@ namespace CDSHooks.Core
                     Id = "patient-greeting",
                     Title = "Patient greeting",
                     HookId = "patient-view",
-                    CodeType = CDSServiceCodeType.JSON,
-                    Code = "{\"cards\":[{\"uuid\":\"12345678-1234-1234-1234-123456789012\",\"summary\":\"NowSeeing\",\"source\":{\"label\":\"PatientGreetingService\"},\"indicator\":\"info\"}]}",
+                    CodeType = CDSServiceCodeType.CSharp,
+                    Code =
+@"using CDSHooks.Core.Models;
+using CDSHooks.Domain;
+using Hl7.Fhir.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+var patient = prefetch.TryGetValue(""patient"", out var resource) ? resource as Patient : null;
+return new ExecuteServiceResponse
+{
+    Cards = new[]
+    {
+        new CDSCard
+        {
+            UUId = Guid.NewGuid().ToString(),
+            Summary = $""Now seeing {patient?.Name?.FirstOrDefault()?.Given?.FirstOrDefault()}"",
+            Source = new CDSCardSource
+            {
+                Label = ""Patient Greeting Service"",
+            },
+            Indicator = ""info""
+        }
+    }
+}; ",
                     Description = "Display generic patient grettings",
                     Prefetch = new Dictionary<string, string>
                     {
