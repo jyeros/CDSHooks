@@ -32,7 +32,7 @@ namespace CDSHooks.Core.PrefetchTemplate
 
             var queries = new List<(string key, string query)>();
 
-            foreach (var prefetch in prefetchToResolve)
+            foreach (var prefetch in prefetchToResolve ?? new Dictionary<string, string>())
             {
                 if (prefetchProvidedClone.TryGetValue(prefetch.Key, out var value))
                 {
