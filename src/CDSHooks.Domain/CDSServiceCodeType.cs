@@ -2,6 +2,7 @@
 {
     public enum CDSServiceCodeType
     {
-        JSON
+        JSON,
+        CSharp
     }
 }

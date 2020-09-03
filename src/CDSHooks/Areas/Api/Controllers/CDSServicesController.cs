@@ -1,6 +1,7 @@
 ﻿using CDSHooks.Core;
 using CDSHooks.Core.Models;
 using CDSHooks.Core.PrefetchTemplate;
+using CDSHooks.Core.ServiceCodeRunner;
 using CDSHooks.Data.DBContexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -49,12 +50,15 @@ namespace CDSHooks.Areas.Api.Controllers
                 return BadRequest(outcomeContextParser);
 
             var (outcomePrefetchResolved, prefetchResolved) = await prefetchResolver.Resolve(executeService.Prefetch, service.Prefetch,
-                    contextParsed, service.Hook.Context.ToDictionary(x => x.Field), executeService.FhirServer, 
+                    contextParsed, service.Hook.Context.ToDictionary(x => x.Field), executeService.FhirServer,
                     executeService.FhirAuthorization);
             if (outcomePrefetchResolved != null)
                 return BadRequest(outcomePrefetchResolved);
 
-            var result = dispatchExecuteService.Dispatch(executeService, service);
+            executeService.Context = contextParsed;
+            executeService.Prefetch = prefetchResolved;
+
+            var result = await dispatchExecuteService.Dispatch(executeService, service);
 
             return new JsonResult(result);
         }

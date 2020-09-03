@@ -2,14 +2,13 @@
 using Hl7.Fhir.Model;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 
 namespace CDSHooks.Core
 {
     class HookContextParser : IHookContextParser
     {
-        public (OperationOutcome outcome, IDictionary<string, object> context) 
+        public (OperationOutcome outcome, IDictionary<string, object> context)
             Parse(IDictionary<string, object> context, IList<HookContext> contextsSchema)
         {
             var contextParsed = new Dictionary<string, object>();
