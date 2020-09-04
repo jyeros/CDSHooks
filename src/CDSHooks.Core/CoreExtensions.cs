@@ -18,16 +18,16 @@ namespace CDSHooks.Core
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 context.Database.Migrate();
+                if (!context.Hooks.Any())
+                {
+                    foreach (var hook in Config.GetHooks())
+                    {
+                        context.Hooks.Add(hook);
+                    }
+                    context.SaveChanges();
+                }
                 if (env.IsDevelopment())
                 {
-                    if (!context.Hook.Any())
-                    {
-                        foreach (var hook in Config.GetHooks())
-                        {
-                            context.Hook.Add(hook);
-                        }
-                        context.SaveChanges();
-                    }
                     if (!context.Services.Any())
                     {
                         foreach (var service in Config.GetServices())
