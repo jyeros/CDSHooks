@@ -53,7 +53,10 @@ namespace CDSHooks.Areas.Api.Controllers
                     contextParsed, service.Hook.Context.ToDictionary(x => x.Field), executeService.FhirServer,
                     executeService.FhirAuthorization);
             if (outcomePrefetchResolved != null)
-                return BadRequest(outcomePrefetchResolved);
+                return StatusCode(
+                    outcomePrefetchResolved.Issue.Exists(x => x.Code == Hl7.Fhir.Model.OperationOutcome.IssueType.Security) 
+                        ? 412 : 400,
+                    outcomePrefetchResolved);
 
             executeService.Context = contextParsed;
             executeService.Prefetch = prefetchResolved;

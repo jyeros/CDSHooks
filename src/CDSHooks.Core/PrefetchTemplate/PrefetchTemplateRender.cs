@@ -71,8 +71,8 @@ namespace CDSHooks.Core.PrefetchTemplate
                     errors.Add(new OperationOutcome.IssueComponent
                     {
                         Severity = OperationOutcome.IssueSeverity.Fatal,
-                        Code = OperationOutcome.IssueType.Invalid,
-                        Diagnostics = $"Not all prefetch provided and can't access to fhir server, fhirAuthorization and fhirServer are needed"
+                        Code = OperationOutcome.IssueType.Security,
+                        Diagnostics = "Not all prefetch provided and can't access to fhir server, fhirAuthorization and fhirServer are needed"
                     });
                 }
                 else
