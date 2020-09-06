@@ -73,3 +73,11 @@ body {
 .has-text-centered {
   text-align:center;
 }
+
+.text-limit-10-lines {
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    overflow: hidden
+}

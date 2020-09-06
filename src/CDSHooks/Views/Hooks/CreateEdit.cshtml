@@ -46,7 +46,6 @@
         var contextAppendGrid = new AppendGrid({
             element: document.getElementById("@Html.IdFor(model => model.Context)"),
             uiFramework: "bootstrap4",
-
             nameFormatter: function (idPrefix, name, uniqueIndex) {
                 return idPrefix + "[" + (uniqueIndex - 1) + "]." + name.charAt(0).toUpperCase() + name.slice(1)
             },

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<CDSHooks.Models.PrefetchViewModel>
+@if (Model?.Any() ?? false)
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Key)</th>
+                <th>@Html.DisplayNameFor(model => model.Query)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var context in Model)
+            {
+                <tr>
+                    <td>@context.Key</td>
+                    <td>@context.Query</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

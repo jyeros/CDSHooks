@@ -1,22 +1,19 @@
-﻿@model IEnumerable<CDSHooks.Models.HookContextViewModel>
+﻿@model IEnumerable<CDSHooks.Models.PrefetchViewModel>
 @if(Model?.Any() ?? false)
 {
     <table>
         <tbody>
-            @foreach (var context in Model)
+            @foreach (var prefetch in Model)
             {
                 <tr>
                     <td>
-                        @context.Field
-                    </td>
-                    <td>
-                        (@context.Type
+                        @prefetch.Key
                     </td>
                     <td>
                         -
                     </td>
                     <td>
-                        @(context.IsRequired ? "REQUIRED" : "OPTIONAL"))
+                        @prefetch.Query
                     </td>
                 </tr>
             }
