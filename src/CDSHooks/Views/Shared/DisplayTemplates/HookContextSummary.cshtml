@@ -1,0 +1,22 @@
+﻿@model IEnumerable<CDSHooks.Models.HookContextViewModel>
+<table>
+    <tbody>
+        @foreach (var context in Model)
+        {
+            <tr>
+                <td>
+                    @context.Field
+                </td>
+                <td>
+                    (@context.Type
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    @(context.IsRequired ? "REQUIRED" : "OPTIONAL"))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

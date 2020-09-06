@@ -1,0 +1,24 @@
+﻿@model IEnumerable<CDSHooks.Models.HookContextViewModel>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Field)</th>
+            <th>@Html.DisplayNameFor(model => model.IsRequired)</th>
+            <th>@Html.DisplayNameFor(model => model.IsPrefetchToken)</th>
+            <th>@Html.DisplayNameFor(model => model.Type)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var context in Model)
+        {
+            <tr>
+                <td>@context.Field</td>
+                <td>@(context.IsRequired ? "yes" : "no")</td>
+                <td>@(context.IsPrefetchToken ? "yes" : "no")</td>
+                <td>@context.Type</td>
+                <td>@context.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>

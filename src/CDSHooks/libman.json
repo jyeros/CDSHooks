@@ -1,0 +1,11 @@
+{
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "unpkg",
+      "library": "jquery.appendgrid@2.0.7",
+      "destination": "wwwroot/lib/jquery.appendgrid/"
+    }
+  ],
+  "version": "1.0"
+}

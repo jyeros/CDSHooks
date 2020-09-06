@@ -1,0 +1,120 @@
+﻿@model CDSHooks.Models.HookViewModel
+
+@{
+    var action = ViewBag.isEdit ?? false ? "Edit" : "Create";
+    ViewData["Title"] = action;
+}
+
+<h1>@action</h1>
+
+<h4>Hook</h4>
+<hr />
+<div class="row">
+    <form id="form" asp-action="@action">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label asp-for="Workflow" class="control-label"></label>
+                <textarea asp-for="Workflow" rows="7" cols="60" class="form-control" placeholder="Enter workflow detail here">
+                 </textarea>
+                <span asp-validation-for="Workflow" class="text-danger"></span>
+            </div>
+            <table id="@Html.IdFor(model => model.Context)"></table>
+            <div class="form-group">
+                <input type="submit" value="@action" class="btn btn-primary" id="submit" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/jquery.appendgrid/dist/AppendGrid.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('#submit').click(fixFormInputRowsNumber("Context"));
+        var contextAppendGrid = new AppendGrid({
+            element: document.getElementById("@Html.IdFor(model => model.Context)"),
+            uiFramework: "bootstrap4",
+
+            nameFormatter: function (idPrefix, name, uniqueIndex) {
+                return idPrefix + "[" + (uniqueIndex - 1) + "]." + name.charAt(0).toUpperCase() + name.slice(1)
+            },
+            initRows: 1,
+            columns: [
+                {
+                    name: "field",
+                    display: "@Html.DisplayNameFor(model => model.Context[0].Field)",
+                    ctrlAttr: {
+                        "data-val": "true",
+                        "data-val-required": "The Context.Field field is required."
+                    },
+                    ctrlAdded: appendGridAddValidationSpan
+                },
+                {
+                    name: "isRequired",
+                    display: "@Html.DisplayNameFor(model => model.Context[0].IsRequired)",
+                    type: "checkbox",
+                    cellClass: "has-text-centered",
+                    ctrlAttr: {
+                        "value": "true",
+                        "data-val": "true",
+                        "data-val-required": "The Context.IsRequired field is required."
+                    },
+                    ctrlAdded: appendGridAddValidationSpan
+                },
+                {
+                    name: "isPrefetchToken",
+                    display: "@Html.DisplayNameFor(model => model.Context[0].IsPrefetchToken)",
+                    type: "checkbox",
+                    cellClass: "has-text-centered",
+                    ctrlAttr: {
+                        "value": "true",
+                        "data-val": "true",
+                        "data-val-required": "The Context.IsPrefetchToken field is required."
+                    },
+                    ctrlAdded: appendGridAddValidationSpan
+                },
+                {
+                    name: "type",
+                    display: "@Html.DisplayNameFor(model => model.Context[0].Type)",
+                    type: "select",
+                    ctrlOptions: @(Json.Serialize(ViewBag.types)),
+                    ctrlAttr: {
+                        "data-val": "true",
+                        "data-val-required": "The Context.Type field is required."
+                    },
+                    ctrlAdded: appendGridAddValidationSpan
+                },
+                {
+                    name: "description",
+                    display: "@Html.DisplayNameFor(model => model.Context[0].Description)",
+                    ctrlAdded: appendGridAddValidationSpan
+                }
+            ],
+            sectionClasses: {
+                table: "is-narrow is-fullwidth",
+            },
+            beforeRowRemove: function (caller, rowIndex) {
+                return contextAppendGrid.getRowCount() > 1;
+            },
+            hideButtons: {
+                // Hide the move up and move down button on each row
+                moveUp: true,
+                moveDown: true
+            }
+        });
+        if (@(Model?.Context?.Count ?? 0) > 0)
+            contextAppendGrid.load(@(Json.Serialize(Model?.Context)))
+    </script>
+}
