@@ -16,5 +16,11 @@ namespace CDSHooks
             }.Concat(ModelInfo.SupportedResources
                 .Select(resourceName => (ModelInfo.FhirTypeToCsType[resourceName], resourceName)))
             .ToDictionary(x => x.Item1.FullName, x => x.Item2);
+
+        public static HashSet<Type> allowedPrefetchTokenTypes = new HashSet<Type>
+        {
+             typeof(string),
+             typeof(double),
+        };
     }
 }
