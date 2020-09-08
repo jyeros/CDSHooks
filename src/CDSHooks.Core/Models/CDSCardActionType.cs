@@ -1,8 +1,10 @@
-﻿namespace CDSHooks.Core.Models
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace CDSHooks.Core.Models
 {
     // TODO: Maybe should not be enum
-    // TODO: Enum should be string at json
-    // TODO: Enum at json camelCase
+    [JsonConverter(typeof(StringEnumConverter), true)]
     public enum CDSCardActionType
     {
         Delete,

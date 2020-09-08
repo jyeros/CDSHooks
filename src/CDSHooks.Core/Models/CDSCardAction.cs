@@ -8,7 +8,6 @@ namespace CDSHooks.Core.Models
     public class CDSCardAction
     {
         [Required]
-        //TODO: Enum should be string with camelCase
         public CDSCardActionType Type { get; set; }
         [Required]
         public string Description { get; set; }
