@@ -98,7 +98,11 @@
                 {
                     name: "description",
                     display: "@Html.DisplayNameFor(model => model.Context[0].Description)",
-                    ctrlAdded: appendGridAddValidationSpan
+                    type: "textarea",
+                    ctrlAdded: appendGridAddValidationSpan,
+                    ctrlAttr: {
+                        rows: 2
+                    }
                 }
             ],
             sectionClasses: {
