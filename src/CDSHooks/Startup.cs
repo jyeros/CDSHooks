@@ -56,6 +56,12 @@ namespace CDSHooks
             app.UseStaticFiles();
 
             app.UseRouting();
+            // TODO: restrict origin and header from config file
+            app.UseCors(options => 
+            {
+                options.AllowAnyOrigin();
+                options.AllowAnyHeader();
+            });
 
             app.InitializeCDSHooksServerDatabase(env);
 
