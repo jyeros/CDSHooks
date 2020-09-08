@@ -26,6 +26,8 @@ namespace CDSHooks.Models
         public bool IsPrefetchToken { get; set; }
         [Required]
         public string Type { get; set; }
+        [DisplayName("Array type")]
+        public bool IsArrayType { get; set; }
         public string Description { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

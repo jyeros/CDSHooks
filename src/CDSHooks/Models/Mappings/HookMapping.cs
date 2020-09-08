@@ -35,7 +35,8 @@ namespace CDSHooks.Models.Mappings
                     Description = context.Description,
                     IsPrefetchToken = context.IsPrefetchToken,
                     IsRequired = context.Optionality == ContextOptionality.REQUIRED,
-                    Type = context.Type.FullName
+                    Type = context.Type.IsArray ? context.Type.GetElementType().FullName : context.Type.FullName,
+                    IsArrayType = context.Type.IsArray
                 }).ToList()
             };
         }
@@ -52,7 +53,7 @@ namespace CDSHooks.Models.Mappings
                     Description = context.Description,
                     IsPrefetchToken = context.IsPrefetchToken,
                     Optionality = context.IsRequired ? ContextOptionality.REQUIRED : ContextOptionality.OPTIONAL,
-                    Type = Type.GetType(context.Type)
+                    Type = context.IsArrayType ? Type.GetType(context.Type).MakeArrayType() : Type.GetType(context.Type)
                 }).ToList()
             };
         }

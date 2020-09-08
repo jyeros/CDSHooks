@@ -81,7 +81,6 @@
                     ctrlAttr: {
                         "value": "true",
                         "data-val": "true",
-                        "data-val-required": "The Context.IsPrefetchToken field is required."
                     },
                     ctrlAdded: appendGridAddValidationSpan
                 },
@@ -93,6 +92,17 @@
                     ctrlAttr: {
                         "data-val": "true",
                         "data-val-required": "The Context.Type field is required."
+                    },
+                    ctrlAdded: appendGridAddValidationSpan
+                },
+                {
+                    name: "isArrayType",
+                    display: "@Html.DisplayNameFor(model => model.Context[0].IsArrayType)",
+                    type: "checkbox",
+                    cellClass: "has-text-centered",
+                    ctrlAttr: {
+                        "value": "true",
+                        "data-val": "true",
                     },
                     ctrlAdded: appendGridAddValidationSpan
                 },

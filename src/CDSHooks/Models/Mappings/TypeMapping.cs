@@ -7,17 +7,19 @@ namespace CDSHooks.Models.Mappings
     {
         public static string TypeToDisplay(Type type)
         {
-            if (ModelInfo.FhirCsTypeToString.TryGetValue(type, out var fhirType))
-                return fhirType;
-            if (type == typeof(string))
-                return "string";
-            if (type == typeof(bool))
-                return "boolean";
-            if (type == typeof(double))
-                return "number";
-            if (type == typeof(object))
-                return "object";
-            return type.ToString();
+            var singleType = type.IsArray ? type.GetElementType() : type;
+            var displayType = singleType.ToString();
+            if (ModelInfo.FhirCsTypeToString.TryGetValue(singleType, out var fhirType))
+                displayType = fhirType;
+            else if (singleType == typeof(string))
+                displayType = "string";
+            else if (singleType == typeof(bool))
+                displayType = "boolean";
+            else if (singleType == typeof(double))
+                displayType = "number";
+            else if (singleType == typeof(object))
+                displayType = "object";
+            return $"{displayType}{(type.IsArray ? "[]" : "")}";
         }
     }
 }
