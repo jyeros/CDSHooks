@@ -85,7 +85,7 @@
             nameFormatter: function (idPrefix, name, uniqueIndex) {
                 return idPrefix + "[" + (uniqueIndex - 1) + "]." + name.charAt(0).toUpperCase() + name.slice(1)
             },
-            initRows: 1,
+            initRows: 0,
             columns: [
                 {
                     name: "key",
@@ -108,9 +108,6 @@
             ],
             sectionClasses: {
                 table: "is-narrow is-fullwidth",
-            },
-            beforeRowRemove: function (caller, rowIndex) {
-                return prefetchAppendGrid.getRowCount() > 1;
             },
             hideButtons: {
                 // Hide the move up and move down button on each row
