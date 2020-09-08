@@ -10,6 +10,7 @@
 <h4>Service</h4>
 <hr />
 <form asp-action="@action">
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="col-md-4">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
