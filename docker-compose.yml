@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  cdshooks:
+    image: ${DOCKER_REGISTRY-}cdshooks
+    build:
+      context: .
+      dockerfile: src/CDSHooks/Dockerfile
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-CU6-ubuntu-16.04
